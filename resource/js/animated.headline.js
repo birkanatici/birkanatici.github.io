@@ -41,15 +41,27 @@ jQuery(document).ready(function($){
 	function animateHeadline($headlines) {
 		var duration = animationDelay;
 		$headlines.each(function(){
-			var headline = $(this);
+			var headline = $(this),
+				width = $(window).width();
 			
 			if(headline.hasClass('loading-bar')) {
 				duration = barAnimationDelay;
 				setTimeout(function(){ headline.find('.cd-words-wrapper').addClass('is-loading') }, barWaiting);
 			} else if (headline.hasClass('clip')){
-				var spanWrapper = headline.find('.cd-words-wrapper'),
-					rightPadSize = $(window).width() >= 1170 ? 90 : 10;
-					newWidth = spanWrapper.width() + rightPadSize;
+				var spanWrapper = headline.find('.cd-words-wrapper');
+					
+					var rightPadSize = -80;
+
+					if (width >= 1170) {
+						rightPadSize = 90;
+					} else if (width >= 768) {
+						rightPadSize = 10;
+					}
+
+
+					var newWidth = spanWrapper.width() + rightPadSize;
+
+
 				spanWrapper.css('width', newWidth);
 			} else if (!headline.hasClass('type') ) {
 				//assign to .cd-words-wrapper the width of its longest word
