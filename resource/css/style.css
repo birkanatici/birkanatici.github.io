@@ -68,6 +68,7 @@ p {
   display: inline-block;
   position: relative;
   text-align: left;
+  width: 255px;
 }
 
 .cd-words-wrapper b {
